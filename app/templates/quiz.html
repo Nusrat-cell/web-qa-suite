@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Quiz</title></head>
+<body>
+<h1>Quiz</h1>
+{% if not cards %}<p id="empty">No cards yet. Add some first.</p>{% else %}
+<div id="card"><p id="question">{{ cards[0].question }}</p>
+<button id="show">Show answer</button><p id="answer" hidden>{{ cards[0].answer }}</p></div>
+<script>document.getElementById('show').onclick=()=>{document.getElementById('answer').hidden=false}</script>
+{% endif %}
+<a href="/">Back</a>
+</body></html>

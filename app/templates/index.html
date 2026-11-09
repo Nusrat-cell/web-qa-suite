@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Flashcards</title></head>
+<body>
+<h1>Flashcards</h1>
+{% if error %}<p id="error" role="alert">{{ error }}</p>{% endif %}
+<form id="add" method="post" action="/cards">
+  <label for="question">Question</label><input id="question" name="question">
+  <label for="answer">Answer</label><input id="answer" name="answer">
+  <button type="submit">Add card</button>
+</form>
+<p id="count">{{ cards|length }} card{{ '' if cards|length == 1 else 's' }}</p>
+<ul id="cards">
+{% for c in cards %}
+  <li data-id="{{ c.id }}"><span class="q">{{ c.question }}</span> / <span class="a">{{ c.answer }}</span>
+    <form method="post" action="/cards/{{ c.id }}/delete" style="display:inline"><button>Delete</button></form></li>
+{% endfor %}
+</ul>
+<a href="/quiz">Start quiz</a>
+</body></html>
